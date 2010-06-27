@@ -5,7 +5,7 @@ module Alastrina
   
   module ClassMethods
     def alastrina
-      puts "class method alastrina"
+      throw "Missing lock_version field." unless column_names.include? "lock_version"
     end
   end
   
