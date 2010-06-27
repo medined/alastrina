@@ -6,6 +6,21 @@ in a text field.
 == Install
 
   gem install medined-alastrina --source http://gems.github.com
-  
+
 == Usage
 
+class Person < < ActiveRecord::Base
+  alastrina
+end
+
+== Requirements
+
+The model being audited needs to have a lock_version field.
+
+  def self.up
+    create_table :places do |t|
+      t.integer :lock_version
+    end
+  end
+
+  
