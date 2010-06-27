@@ -1,0 +1,11 @@
+= Alastrina
+
+Rails gem for recording changes in models. Changes are stored in YAML format
+in a text field.
+
+== Install
+
+  gem install medined-alastrina --source http://gems.github.com
+  
+== Usage
+
