@@ -1,7 +1,8 @@
 = Alastrina
 
-Rails gem for recording changes in models. Changes are stored in YAML format
-in a text field.
+Rails gem for recording changes in models. Changes can be
+ 
+ * sent to Twitter
 
 == Install
 
@@ -22,5 +23,11 @@ The model being audited needs to have a lock_version field.
       t.integer :lock_version
     end
   end
-
   
+If you want to use send changes to a Twitter account, install the Twitter gem and create a config/alastrina.yml file that looks like this:
+
+--- 
+  twitter
+    username: alastrina_gem
+    password: XXXXXXXX
+
