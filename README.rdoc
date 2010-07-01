@@ -14,16 +14,8 @@ class Person < < ActiveRecord::Base
   alastrina
 end
 
-== Requirements
+=== Send to Twitter
 
-The model being audited needs to have a lock_version field.
-
-  def self.up
-    create_table :places do |t|
-      t.integer :lock_version
-    end
-  end
-  
 If you want to use send changes to a Twitter account, install the Twitter gem and create a config/alastrina.yml file that looks like this:
 
 --- 
@@ -31,3 +23,14 @@ If you want to use send changes to a Twitter account, install the Twitter gem an
     username: alastrina_gem
     password: XXXXXXXX
 
+If an  model needs to send changes to a different Twitter account, you can specify the authentication details like this:
+
+class Person < < ActiveRecord::Base
+  alastrina :twitter => { :username => 'alastrina_gem', :password => 'QQQQQQ' }
+end
+
+At this point, the key values in the hash must be symbols.
+
+== Requirements
+
+None.
