@@ -7,12 +7,17 @@ module Alastrina
   
   module ClassMethods
     def alastrina hash
-      p "1hash: #{hash.inspect}"
       module_eval do
-        p "2hash: #{hash.inspect}"
         def configuration
           throw "Missing #{ALASTRINA_CONFIGURATION_FILE}" unless File.exists? ALASTRINA_CONFIGURATION_FILE 
           @config ||= YAML::load(File.read(ALASTRINA_CONFIGURATION_FILE))
+        end
+        if hash[:logger]
+          eval "def logger\n#{eval hash[:logger]}\nend\n"
+        else
+          def logger
+            RAILS_DEFAULT_LOGGER if defined?(RAILS_DEFAULT_LOGGER)
+          end
         end
         if hash[:twitter]
           def send_to_twitter?
@@ -53,7 +58,7 @@ private
       begin
         client.update(changes.to_yaml)
       rescue
-        RAILS_DEFAULT_LOGGER.error "alastrina.send_via_twitter; Unable to send change. Message[#{$!}] Change[#{changes.to_yaml}]"
+        logger.error "alastrina.send_via_twitter; Unable to send change. Message[#{$!}] Change[#{changes.to_yaml}]" if logger
       end
     end
   end
