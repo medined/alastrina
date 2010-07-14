@@ -4,6 +4,13 @@ Rails gem for recording changes in models. Changes can be
  
  * sent to Twitter
 
+== TODO
+
+ * 'humanize' the text pushed to Twitter instead of sending JSON.
+ * support :exclude parameter
+ * support :include parameter
+ * support encryption
+
 == Install
 
   gem install medined-alastrina --source http://gems.github.com
